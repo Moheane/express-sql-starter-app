@@ -1,1 +1,0 @@
-alter table counter add column username text default '';

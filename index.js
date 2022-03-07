@@ -29,46 +29,74 @@ open({
 
 	await db.migrate();
 
-	let counter = 0;
+
 
 	app.get('/', async function (req, res) {
 
-		const counter = await db.get('select * from counter');
+		// const counter = await db.get('select * from docTable');
 
-		res.render('index', {
-			counter: counter ? counter.count : 0
-		});
+		res.render('index');
 	});
 
-	app.post('/count', async function (req, res) {
+	
 
-		try {
-			
-			console.log(req.body);
+	app.post('/', async function (req, res) {
 
-			const action = req.body.action;
+		const {id, newdate, ref, code, referral,report} = req.body;
 
-			if (action === 'Press button to count') {
+		await db.run('insert into docTable(id,newdate, ref, code, referral, report) values (?,?,?,?,?,?)', [id,newdate,ref,code,referral,report])
 
-				const result = await db.get('select count(*) as count from counter');
-				if (result.count === 0) {
-					await db.run('insert into counter(count) values (?)', 1)
-				} else {
-					await db.exec('update counter set count = count + 1');
-				}
-
-			} else if (action === 'Reset the counter') {
-
-				await db.exec('delete from counter');
-
-			} 
-
-		} catch (err) {
-			console.log(err);
-		}
+		console.log(id+' '+date)
 
 		res.redirect('/')
 	});
+
+
+	
+	app.get('/admin', async function (req, res) {
+
+		receipts = await db.all(
+			"select * from docTable"
+		  );
+
+		  console.log(receipts)
+
+		
+
+		res.render('admin', {
+			receipts: receipts
+		});
+	});
+
+	// app.post('/admin', async function (req, res) {
+
+	// 	try {
+			
+	// 		console.log(req.body);
+
+	// 		const action = req.body.action;
+
+	// 		if (action === 'Press button to count') {
+
+	// 			const result = await db.get('select count(*) as count from counter');
+	// 			if (result.count === 0) {
+	// 				await db.run('insert into counter(count) values (?)', 1)
+	// 			} else {
+	// 				await db.exec('update counter set count = count + 1');
+	// 			}
+
+	// 		} else if (action === 'Reset the counter') {
+
+	// 			await db.exec('delete from counter');
+
+	// 		} 
+
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 	}
+
+	// 	res.redirect('/')
+	// });
 
 
 	// start  the server and start listening for HTTP request on the PORT number specified...

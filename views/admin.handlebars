@@ -1,0 +1,28 @@
+<h1>ADMIN</h1>
+	
+ <table class="center">
+            <thead class="order_head">
+                <tr >
+                    <td>id</td>
+                    <td>newdate</td>
+                     <td>doc</td>
+					 <td>code</td>
+					 <td>ref</td>
+                    <td>referral</td>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each receipts}}
+                <tr>
+        
+                    <td>{{id}}</td>
+                    <td>{{newdate}}</td>
+                    <td>{{doc}}</td>
+					<td>{{code}}</td>
+                    <td>{{ref}}</td>
+                    <td>{{referral}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+            
+        </table>
