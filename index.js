@@ -46,7 +46,7 @@ open({
 
 		await db.run('insert into docTable(id,newdate, ref, code, referral, report) values (?,?,?,?,?,?)', [id,newdate,ref,code,referral,report])
 
-		console.log(id+' '+date)
+		console.log(id+' '+newdate)
 
 		res.redirect('/')
 	});
@@ -58,14 +58,31 @@ open({
 		receipts = await db.all(
 			"select * from docTable"
 		  );
-
-		  console.log(receipts)
-
 		
 
 		res.render('admin', {
 			receipts: receipts
 		});
+	});
+
+
+	app.get('/file/:name', async function (req, res) {
+		
+		pname = req.params.name
+
+		receipts = await db.get(
+			"select report from docTable where report = (?)", pname
+		  );
+
+		  console.log(receipts.json)
+
+		  thefile = res.download(receipts)
+
+		  console.log(thefile)
+
+		
+
+		res.redirect('/');
 	});
 
 	// app.post('/admin', async function (req, res) {

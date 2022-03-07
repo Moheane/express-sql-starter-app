@@ -5,6 +5,7 @@ create table docTable (
 	code   TEXT    NOT NULL,
 	ref   TEXT    NOT NULL,
 	referral   TEXT    NOT NULL,
+	report BLOB
 	
 );
 

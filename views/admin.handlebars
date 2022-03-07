@@ -1,14 +1,17 @@
 <h1>ADMIN</h1>
 	
- <table class="center">
-            <thead class="order_head">
+ <table class="center table">
+	 {{!-- <a href="{{thefile}}" download="exe"></a> --}}
+            <thead class="thead-dark">
                 <tr >
-                    <td>id</td>
-                    <td>newdate</td>
-                     <td>doc</td>
-					 <td>code</td>
-					 <td>ref</td>
-                    <td>referral</td>
+                    <th scope="col">id</th>
+                    <th scope="col">newdate</th>
+                     {{!-- <th scope="col">doc</th> --}}
+					 <th scope="col">code</th>
+					 <th scope="col">ref</th>
+                    <th scope="col">referral</th>
+					<th scope="col">report</th>
+					{{!-- <th scope="col">action</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -17,10 +20,12 @@
         
                     <td>{{id}}</td>
                     <td>{{newdate}}</td>
-                    <td>{{doc}}</td>
+                    {{!-- <td>{{doc}}</td> --}}
 					<td>{{code}}</td>
                     <td>{{ref}}</td>
                     <td>{{referral}}</td>
+					<td><a href="file/{{report}}">{{report}}</a></td>
+					{{!-- <td>	 <a href="{{report}}" download="exe"></a></td> --}}
                 </tr>
                 {{/each}}
             </tbody>
