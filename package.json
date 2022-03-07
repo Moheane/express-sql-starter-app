@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "express-handlebars": "^5.3.3",
-    "sqlite": "^4.0.23",
+    "express": "^4.17.3",
+    "express-handlebars": "^5.3.5",
+    "sqlite": "^4.0.25",
     "sqlite3": "^5.0.2"
   }
 }
