@@ -44,7 +44,7 @@ open({
 
 		const {id, newdate, ref, code, referral,report} = req.body;
 
-		await db.run('insert into docTable(id,newdate, ref, code, referral, report) values (?,?,?,?,?,?)', [id,newdate,ref,code,referral,report])
+		await db.run('insert into docTable(id, ref, code, referral, report) values (?,?,?,?,?)', [id,ref,code,referral,report])
 
 		console.log(id+' '+newdate)
 

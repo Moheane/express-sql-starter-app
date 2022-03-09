@@ -1,6 +1,6 @@
 create table docTable (
 	id INTEGER NOT NULL,
- newdate   TEXT    NOT NULL,
+ newdate   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    doc         TEXT,
 	code   TEXT    NOT NULL,
 	ref   TEXT    NOT NULL,
@@ -9,5 +9,5 @@ create table docTable (
 	
 );
 
-INSERT INTO docTable (ID,newdate,doc,code,ref,referral)
-VALUES ( 101, '01 Jan 2022','aww.pdf','6899', '776', 'none' );
+INSERT INTO docTable (ID,doc,code,ref,referral, report)
+VALUES ( 101,'aww.pdf','12345', '33442', 'none', 'test.pdf' );
