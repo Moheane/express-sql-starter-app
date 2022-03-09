@@ -1,6 +1,6 @@
 create table docTable (
 	id INTEGER NOT NULL,
- newdate   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ newdate   TIMESTAMP DEFAULT (datetime('now','localtime')),
    doc         TEXT,
 	code   TEXT    NOT NULL,
 	ref   TEXT    NOT NULL,
