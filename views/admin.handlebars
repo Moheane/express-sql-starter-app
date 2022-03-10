@@ -1,5 +1,8 @@
-<h1>ADMIN</h1>
+<div class="container-fluid bg-warning">
+	<h1>ADMIN</h1>
 	
+	<div class="table-responsive">
+		
  <table class="center table">
 	 {{!-- <a href="{{thefile}}" download="exe"></a> --}}
             <thead class="thead-dark">
@@ -24,10 +27,12 @@
 					<td>{{code}}</td>
                     <td>{{ref}}</td>
                     <td>{{referral}}</td>
-					<td><a href="file/{{report}}">{{report}}</a></td>
+					<td><button type="submit" onclick="window.open('{{report}}')">Download!</button></td>
 					{{!-- <td>	 <a href="{{report}}" download="exe"></a></td> --}}
                 </tr>
                 {{/each}}
             </tbody>
             
         </table>
+	</div>
+</div>

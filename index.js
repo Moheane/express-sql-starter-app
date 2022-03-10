@@ -58,6 +58,7 @@ open({
 		receipts = await db.all(
 			"select * from docTable"
 		  );
+		console.log(receipts)
 		
 
 		res.render('admin', {
@@ -74,7 +75,7 @@ open({
 			"select report from docTable where report = (?)", pname
 		  );
 
-		  console.log(receipts.json)
+		  console.log(receipts)
 
 		  thefile = res.download(receipts)
 
@@ -85,35 +86,39 @@ open({
 		res.redirect('/');
 	});
 
-	// app.post('/admin', async function (req, res) {
+		app.post('/', async function (req, res) {
 
-	// 	try {
-			
-	// 		console.log(req.body);
+		const {id, newdate, ref, code, referral,report} = req.body;
 
-	// 		const action = req.body.action;
+		await db.run('insert into docTable(id, ref, code, referral, report) values (?,?,?,?,?)', [id,ref,code,referral,report])
 
-	// 		if (action === 'Press button to count') {
+		console.log(id+' '+newdate)
 
-	// 			const result = await db.get('select count(*) as count from counter');
-	// 			if (result.count === 0) {
-	// 				await db.run('insert into counter(count) values (?)', 1)
-	// 			} else {
-	// 				await db.exec('update counter set count = count + 1');
-	// 			}
+		res.redirect('/')
+	});
 
-	// 		} else if (action === 'Reset the counter') {
+	app.get('/login', async function (req, res) {
 
-	// 			await db.exec('delete from counter');
+		res.render('login');
+	});
 
-	// 		} 
+	app.post('/login', async function (req, res) {
 
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
+		res.redirect('/');
+	});
 
-	// 	res.redirect('/')
-	// });
+
+	app.get('/adminLogin', async function (req, res) {
+
+		res.render('loginAdmin');
+	});
+
+	app.post('/adminLogin', async function (req, res) {
+
+		res.redirect('/admin');
+	});
+
+
 
 
 	// start  the server and start listening for HTTP request on the PORT number specified...
