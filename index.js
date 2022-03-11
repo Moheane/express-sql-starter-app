@@ -1,9 +1,14 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const factorys = require('./factory')
+const xpsession = require('sessions');
+
+let factory = factorys()
 
 // import sqlite modules
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
+
 
 const app = express();
 const PORT = process.env.PORT || 3017;
@@ -54,7 +59,8 @@ open({
 
 	
 	app.get('/admin', async function (req, res) {
-
+		factory.reset()
+		userv = factory.getuser()
 		receipts = await db.all(
 			"select * from docTable"
 		  );
@@ -62,8 +68,14 @@ open({
 		
 
 		res.render('admin', {
-			receipts: receipts
+			receipts: receipts, userv: userv
 		});
+	});
+
+	app.get('/userList', async function (req, res) {
+		factory.setshowuser()
+		console.log(factory.getuser())
+		res.redirect('/admin')
 	});
 
 
@@ -109,13 +121,52 @@ open({
 
 
 	app.get('/adminLogin', async function (req, res) {
-
+		
 		res.render('loginAdmin');
 	});
 
 	app.post('/adminLogin', async function (req, res) {
 
 		res.redirect('/admin');
+	});
+
+
+	app.get('/adminregister', async function (req, res) {
+
+		res.render('adminregister');
+	});
+
+
+	app.post('/adminRegister', async function (req, res) {
+		let {username, email, password, password2} = req.body;
+
+		if (username && email && password && password2) {
+			await db.run('insert into adminTable(username, email, password, password2) values (?,?,?,?)', [username,email,password,password2])
+			res.redirect('/adminLogin');
+		}else{
+			res.redirect('/adminRegister');
+		}
+	});
+
+
+
+	app.get('/register', async function (req, res) {
+
+		res.render('register');
+	});
+
+	app.post('/register', async function (req, res) {
+		let {username, email, password, password2} = req.body;
+
+		if (username && email && password && password2) {
+			await db.run('insert into userTable(username, email, password, password2) values (?,?,?,?)', [username,email,password,password2])
+			res.redirect('/login');
+			console.log('success')
+		}else{
+			res.redirect('/register');
+			console.log('404')
+		}
+
 	});
 
 

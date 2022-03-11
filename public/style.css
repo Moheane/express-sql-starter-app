@@ -23,3 +23,7 @@ button{
 	/* margin: 1em; */
 	text-align: center;
 }
+
+.hide{
+	display: none;
+}

@@ -10,18 +10,23 @@ create table docTable (
 );
 
 create table userTable (
-	id INTEGER NOT NULL,
+	userid integer PRIMARY KEY NOT NULL,
 	username   TEXT    NOT NULL,
-    userpassword INTEGER NOT NULL,
-	dateCreated TIMESTAMP DEFAULT (datetime('now','localtime')),
+	email   TEXT    NOT NULL,
+	password   TEXT    NOT NULL,
+    password2 INTEGER NOT NULL,
+	dateCreated TIMESTAMP DEFAULT (datetime('now','localtime'))
 	
 );
 
+
 create table adminTable (
-	id INTEGER NOT NULL,
+	userid integer PRIMARY KEY NOT NULL,
 	username   TEXT    NOT NULL,
-    userpassword INTEGER NOT NULL,
-	dateCreated TIMESTAMP DEFAULT (datetime('now','localtime')),
+	email   TEXT    NOT NULL,
+	password   TEXT    NOT NULL,
+    password2 INTEGER NOT NULL,
+	dateCreated TIMESTAMP DEFAULT (datetime('now','localtime'))
 	
 );
 

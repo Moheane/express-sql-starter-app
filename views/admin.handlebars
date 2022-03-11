@@ -1,38 +1,91 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-light">
+	<a class="navbar-brand" href="#">Navbar</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="" href="/admin">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="" href="/userList">Users</a>
+			</li>
+
+		</ul>
+	</div>
+</nav>
 <div class="container-fluid bg-warning">
 	<h1>ADMIN</h1>
-	
+
 	<div class="table-responsive">
-		
- <table class="center table">
-	 {{!-- <a href="{{thefile}}" download="exe"></a> --}}
-            <thead class="thead-dark">
-                <tr >
-                    <th scope="col">id</th>
-                    <th scope="col">newdate</th>
-                     {{!-- <th scope="col">doc</th> --}}
-					 <th scope="col">code</th>
-					 <th scope="col">ref</th>
-                    <th scope="col">referral</th>
+
+		<table class="center table">
+			{{!-- <a href="{{thefile}}" download="exe"></a> --}}
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">id</th>
+					<th scope="col">newdate</th>
+					{{!-- <th scope="col">doc</th> --}}
+					<th scope="col">code</th>
+					<th scope="col">ref</th>
+					<th scope="col">referral</th>
 					<th scope="col">report</th>
 					{{!-- <th scope="col">action</th> --}}
-                </tr>
-            </thead>
-            <tbody>
-                {{#each receipts}}
-                <tr>
-        
-                    <td>{{id}}</td>
-                    <td>{{newdate}}</td>
-                    {{!-- <td>{{doc}}</td> --}}
+				</tr>
+			</thead>
+			<tbody>
+				{{#each receipts}}
+				<tr>
+
+					<td>{{id}}</td>
+					<td>{{newdate}}</td>
+					{{!-- <td>{{doc}}</td> --}}
 					<td>{{code}}</td>
-                    <td>{{ref}}</td>
-                    <td>{{referral}}</td>
+					<td>{{ref}}</td>
+					<td>{{referral}}</td>
 					<td><button type="submit" onclick="window.open('{{report}}')">Download!</button></td>
-					{{!-- <td>	 <a href="{{report}}" download="exe"></a></td> --}}
-                </tr>
-                {{/each}}
-            </tbody>
-            
-        </table>
+					{{!-- <td> <a href="{{report}}" download="exe"></a></td> --}}
+				</tr>
+				{{/each}}
+			</tbody>
+
+		</table>
+	</div>
+
+	<div class="table-responsive {{userv}}">
+
+		<table class="center table">
+			{{!-- <a href="{{thefile}}" download="exe"></a> --}}
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">id</th>
+					<th scope="col">newdate</th>
+					{{!-- <th scope="col">doc</th> --}}
+					<th scope="col">code</th>
+					<th scope="col">ref</th>
+					<th scope="col">referral</th>
+					<th scope="col">report</th>
+					{{!-- <th scope="col">action</th> --}}
+				</tr>
+			</thead>
+			<tbody>
+				{{#each receipts}}
+				<tr>
+
+					<td>{{id}}</td>
+					<td>{{newdate}}</td>
+					{{!-- <td>{{doc}}</td> --}}
+					<td>{{code}}</td>
+					<td>{{ref}}</td>
+					<td>{{referral}}</td>
+					<td><button type="submit" onclick="window.open('{{report}}')">Download!</button></td>
+					{{!-- <td> <a href="{{report}}" download="exe"></a></td> --}}
+				</tr>
+				{{/each}}
+			</tbody>
+
+		</table>
 	</div>
 </div>
