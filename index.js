@@ -38,7 +38,9 @@ open({
 
 	app.get('/', async function (req, res) {
 
-		// const counter = await db.get('select * from docTable');
+		const counter = await db.get('select * from userTable');
+
+		console.log(counter)
 
 		res.render('index');
 	});
@@ -46,12 +48,15 @@ open({
 	
 
 	app.post('/', async function (req, res) {
+		// const counter = await db.get('select * from userTable');
+
+		// console.log(counter)
 
 		const {id, newdate, ref, code, referral,report} = req.body;
 
 		await db.run('insert into docTable(id, ref, code, referral, report) values (?,?,?,?,?)', [id,ref,code,referral,report])
 
-		console.log(id+' '+newdate)
+		// console.log(id+' '+newdate)
 
 		res.redirect('/')
 	});
@@ -74,7 +79,7 @@ open({
 
 	app.get('/userList', async function (req, res) {
 		factory.setshowuser()
-		console.log(factory.getuser())
+		// console.log(factory.getuser())
 		res.redirect('/admin')
 	});
 
@@ -87,11 +92,11 @@ open({
 			"select report from docTable where report = (?)", pname
 		  );
 
-		  console.log(receipts)
+		//   console.log(receipts)
 
 		  thefile = res.download(receipts)
 
-		  console.log(thefile)
+		//   console.log(thefile)
 
 		
 
@@ -104,7 +109,7 @@ open({
 
 		await db.run('insert into docTable(id, ref, code, referral, report) values (?,?,?,?,?)', [id,ref,code,referral,report])
 
-		console.log(id+' '+newdate)
+		// console.log(id+' '+newdate)
 
 		res.redirect('/')
 	});
@@ -133,11 +138,11 @@ open({
 
 	app.get('/adminregister', async function (req, res) {
 
-		res.render('adminregister');
+		res.render('adminRegister');
 	});
 
 
-	app.post('/adminRegister', async function (req, res) {
+	app.post('/adminregister', async function (req, res) {
 		let {username, email, password, password2} = req.body;
 
 		if (username && email && password && password2) {
@@ -160,8 +165,10 @@ open({
 
 		if (username && email && password && password2) {
 			await db.run('insert into userTable(username, email, password, password2) values (?,?,?,?)', [username,email,password,password2])
+			const counter = await db.get('select * from userTable');
 			res.redirect('/login');
 			console.log('success')
+			console.log(counter)
 		}else{
 			res.redirect('/register');
 			console.log('404')

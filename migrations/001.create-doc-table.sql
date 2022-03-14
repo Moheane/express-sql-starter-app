@@ -19,6 +19,9 @@ create table userTable (
 	
 );
 
+INSERT INTO userTable (username,email,password,password2)
+VALUES ( 'user101','user101@gmail.com', '1234', '1234' );
+
 
 create table adminTable (
 	userid integer PRIMARY KEY NOT NULL,
